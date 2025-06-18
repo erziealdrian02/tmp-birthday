@@ -381,7 +381,7 @@ export default function BirthdayGreeting() {
               {/* Gift GIF */}
               <div className="mb-6 rounded-xl overflow-hidden shadow-lg">
                 <img
-                  src="/placeholder.svg?height=300&width=300&text=🎁+Happy+Birthday+GIF"
+                  src="/tenor.gif"
                   alt="Birthday Gift GIF"
                   className="w-full h-64 object-cover"
                 />
@@ -392,9 +392,9 @@ export default function BirthdayGreeting() {
                   Selamat Ulang Tahun Liya! 🎉
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  Semoga website ini bisa jadi kenang-kenangan yang indah di
-                  hari spesialmu. Kado yang sesungguhnya adalah doa dan harapan
-                  terbaik untukmu! 🌟
+                  Walaupun Kadonya tapi boong, Semoga website ini bisa jadi
+                  kenang-kenangan yang indah di hari spesialmu. Kado yang
+                  sesungguhnya adalah doa dan harapan terbaik untukmu! 🌟
                 </p>
                 <div className="text-3xl">💕✨🎂🎈</div>
               </div>
