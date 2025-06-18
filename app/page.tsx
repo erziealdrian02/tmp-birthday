@@ -28,6 +28,7 @@ export default function BirthdayGreeting() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const [showAutoplayNotice, setShowAutoplayNotice] = useState(false);
 
   const birthdayMessage = 'Selamat Ulang Tahun! 🎉';
   const fullMessage =
@@ -59,6 +60,49 @@ export default function BirthdayGreeting() {
 
     return () => observer.disconnect();
   }, [isTyping, currentPage]);
+
+  useEffect(() => {
+    // Auto play music when page loads
+    const tryAutoPlay = async () => {
+      if (audioRef.current) {
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Autoplay prevented by browser policy');
+          setShowAutoplayNotice(true);
+          // Hide notice after 5 seconds
+          setTimeout(() => setShowAutoplayNotice(false), 5000);
+        }
+      }
+    };
+
+    // Try to autoplay after a short delay
+    const timer = setTimeout(tryAutoPlay, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleFirstClick = async () => {
+      if (audioRef.current && !isPlaying) {
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Could not play audio');
+        }
+      }
+    };
+
+    // Add event listener for first user interaction
+    document.addEventListener('click', handleFirstClick, { once: true });
+    document.addEventListener('touchstart', handleFirstClick, { once: true });
+
+    return () => {
+      document.removeEventListener('click', handleFirstClick);
+      document.removeEventListener('touchstart', handleFirstClick);
+    };
+  }, [isPlaying]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -206,8 +250,8 @@ export default function BirthdayGreeting() {
       className={`${playfair.variable} ${dancing.variable} min-h-screen bg-gradient-to-br from-pink-100 via-purple-50 to-indigo-100`}
     >
       {/* Audio Player */}
-      <audio ref={audioRef} loop>
-        <source src="/birthday-song.mp3" type="audio/mpeg" />
+      <audio ref={audioRef} loop autoPlay preload="auto">
+        <source src="/uia.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
 
@@ -222,6 +266,21 @@ export default function BirthdayGreeting() {
           <Play className="w-6 h-6 text-purple-600" />
         )}
       </button>
+
+      {/* Autoplay Notice */}
+      {showAutoplayNotice && !isPlaying && (
+        <div className="fixed top-20 right-4 z-50 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg max-w-xs animate-fade-in-up">
+          <p className="text-sm text-gray-700 mb-2">
+            🎵 Klik tombol play untuk musik!
+          </p>
+          <button
+            onClick={() => setShowAutoplayNotice(false)}
+            className="text-xs text-gray-500 hover:text-gray-700"
+          >
+            Tutup
+          </button>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
