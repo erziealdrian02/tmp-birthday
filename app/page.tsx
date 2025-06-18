@@ -227,7 +227,7 @@ export default function BirthdayGreeting() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div ref={heroRef} className="absolute inset-0 z-0">
           <img
-            src="/placeholder.svg?height=800&width=1200"
+            src="/7pp.jpeg"
             alt="Birthday Hero"
             className="w-full h-full object-cover opacity-20"
           />
@@ -237,7 +237,7 @@ export default function BirthdayGreeting() {
           <div className="animate-bounce mb-8">
             <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl">
               <img
-                src="/placeholder.svg?height=160&width=160"
+                src="/1pp.jpeg"
                 alt="Birthday Person"
                 className="w-full h-full object-cover"
               />
@@ -312,14 +312,14 @@ export default function BirthdayGreeting() {
               >
                 <div className="relative overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105">
                   <img
-                    src={`/placeholder.svg?height=300&width=400&text=Photo${index}`}
+                    src={`/${index}pp.jpeg`}
                     alt={`Memory ${index}`}
                     className="w-full h-64 sm:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 left-4 text-white">
                       <p className="text-sm font-medium">
-                        Kenangan Indah #{index}
+                        Liya Tobrut #{index}
                       </p>
                     </div>
                   </div>
