@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -9,6 +11,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-}
+  // Jika deploy ke subdirectory (bukan root domain)
+  basePath: '/tmp-birthday',
+  assetPrefix: '/tmp-birthday/',
+};
 
-export default nextConfig
+export default nextConfig;
